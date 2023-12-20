@@ -48,29 +48,57 @@ public class Ihm {
             switch(menu) {
                 case 1:
                         gv.SortBySells(v);
-                        for (int i = 0; i < v.size(); i++) {
-                            System.out.println(v.get(i));
-                        }
+                    for (Voiture voiture : v) {
+                        System.out.println(voiture);
+                    }
                     break;
                 case 2:
                         gv.PrintCars(v);
-                    for (int i = 0; i < v.size(); i++) {
-                        System.out.println(v.get(i));
+                    for (Voiture voiture : v) {
+                        System.out.println(voiture);
                     }
                     break;
                 case 3:
+                    gv.PrintSumCarSell(v);
+                    for(Voiture voiture : v){
+                        System.out.println(voiture);
+                    }
                     break;
                 case 4:
+                    gv.PrintCarByBeginningLetter(v);
+                    for(Voiture voiture : v){
+                        System.out.println(voiture);
+                    }
                     break;
                 case 5:
+                    gv.PrintNumberOfSaves(v);
+                    for(Voiture voiture : v){
+                        System.out.println(voiture);
+                    }
                     break;
                 case 6:
+                    gv.PrintSumCarSell(v);
+                    for(Voiture voiture : v){
+                        System.out.println(voiture);
+                    }
                     break;
                 case 7:
+                    gv.PrintCarByLetters(v);
+                    for(Voiture voiture : v){
+                        System.out.println(voiture);
+                    }
                     break;
                 case 8:
+                    gv.PrintCarBySecondLetters(v);
+                    for(Voiture voiture : v){
+                        System.out.println(voiture);
+                    }
                     break;
                 case 9:
+                    gv.PrintCarByLastLetter(v);
+                    for(Voiture voiture : v){
+                        System.out.println(voiture);
+                    }
                     break;
             }
         } catch (SQLException e) {
