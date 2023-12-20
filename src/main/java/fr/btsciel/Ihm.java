@@ -44,25 +44,37 @@ public class Ihm {
                 9| afficher tout les modeles ce terminant par une lettre donnée
                 """);
         menu = In.readInteger();
-        switch(menu) {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9:
-                break;
+        try{
+            switch(menu) {
+                case 1:
+                        gv.SortBySells(v);
+                        for (int i = 0; i < v.size(); i++) {
+                            System.out.println(v.get(i));
+                        }
+                    break;
+                case 2:
+                        gv.PrintCars(v);
+                    for (int i = 0; i < v.size(); i++) {
+                        System.out.println(v.get(i));
+                    }
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+                case 9:
+                    break;
+            }
+        } catch (SQLException e) {
+            System.err.println("votre liste est vide " + e.getMessage());
         }
     }
 }
