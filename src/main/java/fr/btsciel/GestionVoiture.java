@@ -163,4 +163,23 @@ public class GestionVoiture{
         }
         return v;
     }
+    public void SetNewCar() throws SQLException{
+        String saisieModel;
+        String saisieIdMarque;
+        int nb_ventes;
+        System.out.println("quel est le modele de la marque ");
+        saisieModel = In.readString();
+        System.out.println("quel est l'id de la marque ");
+        saisieIdMarque = In.readString();
+        System.out.println("quel est le nombre de vente de cette marque ");
+        nb_ventes = In.readInteger();
+
+        ps = connection.prepareStatement("INSERT INTO voiture (model, id_marque, nb_vente) VALUES ('"+saisieModel+"', '"+ saisieIdMarque+"', "+ nb_ventes+")");
+        int i = ps.executeUpdate();
+        if(i == 1){
+            System.out.println("un nouvel enregistrement a été ajouté a la base  de donnée");
+        }else{
+            System.out.println("l'enregistrement n'a pas pu être effectué");
+        }
+    }
 }

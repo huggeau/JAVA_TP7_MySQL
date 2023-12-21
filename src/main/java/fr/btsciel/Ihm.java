@@ -8,9 +8,9 @@ import java.util.ArrayList;
 public class Ihm {
     public static void main(String[] args) {
         int menu;
-        String url;
-        String user;
-        String password;
+//        String url;
+//        String user;
+//        String password;
         GestionVoiture gv = new GestionVoiture();
         ArrayList<Voiture> v = new ArrayList<>();
 
@@ -100,7 +100,7 @@ public class Ihm {
                     }
                     break;
                 case 10:
-
+                    gv.SetNewCar();
                     break;
             }
         } catch (SQLException e) {
