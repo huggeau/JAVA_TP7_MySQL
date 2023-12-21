@@ -55,7 +55,7 @@ public class GestionVoiture{
         Dacia
         """);
         demande = In.readString();
-        ps = connection.prepareStatement("SELECT marque.nom, model FROM voiture JOIN marque ON voiture.id_marque = marque.id WHERE marque.nom = " + demande);
+        ps = connection.prepareStatement("SELECT marque.nom, model FROM voiture JOIN marque ON voiture.id_marque = marque.id WHERE marque.nom = '" + demande + "'");
         rs = ps.executeQuery();
         while(rs.next()){
             Voiture vo = new Voiture();
@@ -65,8 +65,8 @@ public class GestionVoiture{
         }
         return v;
     }
-    public ArrayList<Voiture> PrintSumCarSell() throws SQLException {
-        ArrayList<Voiture> v = new ArrayList<>();
+    public int PrintSumCarSell() throws SQLException {
+        int result = 0;
         String demande ;
         System.out.println("""
         quel est la marque de voiture dont vous voulez savoir les modèles ? 
@@ -78,19 +78,26 @@ public class GestionVoiture{
         Dacia
         """);
         demande = In.readString();
-        ps = connection.prepareStatement("SELECT SUM(nb_vente) FROM voiture JOIN marque ON voiture.id_marque = marque.id WHERE marque.nom = "+ demande);
+        ps = connection.prepareStatement("SELECT SUM(nb_vente) AS nombre FROM voiture JOIN marque ON voiture.id_marque = marque.id WHERE marque.nom = '"+ demande + "'");
         rs = ps.executeQuery();
         while(rs.next()){
-
+            result = rs.getInt("nombre");
         }
-        return v;
+        return result;
     }
-    public ArrayList<Voiture> PrintCarByBeginningLetter(ArrayList<Voiture> v) throws SQLException {
+    public ArrayList<Voiture> PrintCarByBeginningLetter() throws SQLException {
+        ArrayList<Voiture> v = new ArrayList<>();
         char demande ;
         System.out.println("quel est la lettre que vous voulez choisir dans votre recherche de modele ");
         demande = In.readChar();
-        ps = connection.prepareStatement("SELECT marque.nom, model FROM voiture JOIN marque ON voiture.id_marque = marque.id WHERE model LIKE '"+ demande + "'");
+        ps = connection.prepareStatement("SELECT  model, marque.nom FROM voiture JOIN marque ON voiture.id_marque = marque.id WHERE model LIKE '"+ demande + "%'");
         rs = ps.executeQuery();
+        while(rs.next()){
+            Voiture vo = new Voiture();
+            vo.setModele(rs.getString("model"));
+            vo.setMarque(new Marque(0, rs.getString("marque.nom")));
+            v.add(vo);
+        }
         return v;
     }
     public int PrintNumberOfSaves() throws SQLException {
@@ -111,28 +118,49 @@ public class GestionVoiture{
         }
         return result;
     }
-    public ArrayList<Voiture> PrintCarByLetters(ArrayList<Voiture> v) throws SQLException {
+    public ArrayList<Voiture> PrintCarByLetters() throws SQLException {
+        ArrayList<Voiture> v = new ArrayList<>();
         char demande ;
         System.out.println("quel est la lettre que vous choisicez pour votre recherche de modele ");
         demande = In.readChar();
         ps = connection.prepareStatement("SELECT marque.nom, model FROM voiture JOIN marque ON voiture.id_marque = marque.id WHERE model like '%"+ demande+"%'");
         rs = ps.executeQuery();
+        while(rs.next()){
+            Voiture vo = new Voiture();
+            vo.setModele(rs.getString("model"));
+            vo.setMarque(new Marque(0, rs.getString("marque.nom")));
+            v.add(vo);
+        }
         return v;
     }
-    public ArrayList<Voiture> PrintCarBySecondLetters(ArrayList<Voiture> v) throws SQLException {
+    public ArrayList<Voiture> PrintCarBySecondLetters() throws SQLException {
+        ArrayList<Voiture> v =new ArrayList<>();
         char demande ;
         System.out.println("quel est la lettre que vous choisirez dans votre recherche de modele ");
         demande = In.readChar();
         ps = connection.prepareStatement("SELECT marque.nom, model FROM voiture JOIN marque ON voiture.id_marque = marque.id WHERE model LIKE '_"+ demande+"%'");
         rs = ps.executeQuery();
+        while(rs.next()){
+            Voiture vo = new Voiture();
+            vo.setModele(rs.getString("model"));
+            vo.setMarque(new Marque(0, rs.getString("marque.nom")));
+            v.add(vo);
+        }
         return v;
     }
-    public ArrayList<Voiture> PrintCarByLastLetter(ArrayList<Voiture> v) throws SQLException {
+    public ArrayList<Voiture> PrintCarByLastLetter() throws SQLException {
+        ArrayList<Voiture> v = new ArrayList<>();
         char demande ;
         System.out.println("quel est la lettre que vous choisirez pour votre recherche de modele ");
         demande = In.readChar();
         ps = connection.prepareStatement("SELECT marque.nom, model FROM voiture JOIN marque ON voiture.id_marque = marque.id WHERE model LIKE '%"+demande+"'");
         rs = ps.executeQuery();
+        while(rs.next()){
+            Voiture vo = new Voiture();
+            vo.setModele(rs.getString("model"));
+            vo.setMarque(new Marque(0, rs.getString("marque.nom")));
+            v.add(vo);
+        }
         return v;
     }
 }

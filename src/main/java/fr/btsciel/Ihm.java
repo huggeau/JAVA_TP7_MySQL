@@ -63,15 +63,13 @@ public class Ihm {
                     }
                     break;
                 case 3:
-                    gv.PrintSumCarSell();
-                    for(Voiture voiture : v){
-                        System.out.println(voiture.getNb_vente());
-                    }
+                    System.out.println(gv.PrintSumCarSell());
                     break;
                 case 4:
-                    gv.PrintCarByBeginningLetter(v);
-                    for(Voiture voiture : v){
-                        System.out.println(voiture);
+                    ArrayList<Voiture> car = gv.PrintCarByBeginningLetter();
+                    for(Voiture voiture : car){
+                        System.out.print(voiture.getModele() + "\t");
+                        System.out.println(voiture.getMarque().getNom());
                     }
                     break;
                 case 5:
@@ -81,21 +79,24 @@ public class Ihm {
                     System.out.println(gv.PrintSumAllSells());
                     break;
                 case 7:
-                    gv.PrintCarByLetters(v);
-                    for(Voiture voiture : v){
-                        System.out.println(voiture.getModele());
+                    ArrayList<Voiture> care = gv.PrintCarByLetters();
+                    for(Voiture voiture : care){
+                        System.out.print(voiture.getModele() + "\t");
+                        System.out.println(voiture.getMarque().getNom());
                     }
                     break;
                 case 8:
-                    gv.PrintCarBySecondLetters(v);
-                    for(Voiture voiture : v){
-                        System.out.println(voiture.getModele());
+                    ArrayList<Voiture> carr = gv.PrintCarBySecondLetters();
+                    for(Voiture voiture : carr){
+                        System.out.print(voiture.getModele() + "\t");
+                        System.out.println(voiture.getMarque().getNom());
                     }
                     break;
                 case 9:
-                    gv.PrintCarByLastLetter(v);
-                    for(Voiture voiture : v){
-                        System.out.println(voiture.getModele());
+                    ArrayList<Voiture> carl = gv.PrintCarByLastLetter();
+                    for(Voiture voiture : carl){
+                        System.out.print(voiture.getModele() + "\t");
+                        System.out.println(voiture.getMarque().getNom());
                     }
                     break;
                 case 10:
